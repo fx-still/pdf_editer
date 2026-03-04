@@ -70,7 +70,8 @@ export default function MergePage() {
     setBusy("合并中…");
     try {
       const mergedBytes = await mergePdfs(items.map((i) => i.arrayBuffer));
-      const blob = new Blob([mergedBytes.buffer], {
+      // pdf-lib 返回的是 Uint8Array<ArrayBufferLike>，这里通过断言显式转为 BlobPart 以通过类型检查
+      const blob = new Blob([mergedBytes as unknown as BlobPart], {
         type: "application/pdf",
       });
       downloadBlob(blob, "merged.pdf");
