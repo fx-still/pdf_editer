@@ -70,7 +70,9 @@ export default function MergePage() {
     setBusy("合并中…");
     try {
       const mergedBytes = await mergePdfs(items.map((i) => i.arrayBuffer));
-      const blob = new Blob([mergedBytes], { type: "application/pdf" });
+      const blob = new Blob([mergedBytes.buffer], {
+        type: "application/pdf",
+      });
       downloadBlob(blob, "merged.pdf");
       toast.success("已生成 merged.pdf");
     } catch {
