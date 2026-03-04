@@ -26,7 +26,14 @@ export function Shell({ children }: { children: React.ReactNode }) {
       </header>
       <main>{children}</main>
       <footer className="mx-auto w-full max-w-3xl px-4 pb-10 pt-6 text-xs text-zinc-500">
-        本工具仅在浏览器本地处理 PDF；生产环境启用 PWA（离线缓存）。
+        <div className="flex items-center justify-end">
+          <div className="text-right">
+            <span className="font-medium text-zinc-300">隐私提示：</span>
+            <span className="ml-1 text-zinc-400">
+              文件不会上传，但会在内存中处理；大文件可能占用较多内存。现在开始
+            </span>
+          </div>
+        </div>
       </footer>
     </div>
   );

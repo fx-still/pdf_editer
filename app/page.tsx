@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Shell } from "@/src/components/layout/Shell";
 import { Card } from "@/src/components/ui/Card";
 import { ButtonLink } from "@/src/components/ui/Button";
@@ -40,19 +39,6 @@ export default function LandingPage() {
               <ButtonLink href="/split">进入</ButtonLink>
             </div>
           </Card>
-
-          <div className="text-xs text-zinc-400">
-            <span className="font-medium">隐私提示：</span>
-            文件不会上传，但会在内存中处理；大文件可能占用较多内存。
-            <span className="ml-2">
-              <Link
-                className="underline underline-offset-4 hover:text-zinc-200"
-                href="/merge"
-              >
-                现在开始
-              </Link>
-            </span>
-          </div>
         </div>
       </div>
     </Shell>
