@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ToastProvider } from "@/src/components/toast/ToastProvider";
+import { I18nProvider } from "@/src/components/i18n/I18nProvider";
 
 export const metadata: Metadata = {
-  title: "PDF 极简工具站",
-  description: "本地合并/拆分 PDF，不上传服务器。",
+  title: "PDF Toolkit",
+  description: "Merge and split PDFs locally in your browser — nothing is uploaded.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "PDF 工具",
+    title: "PDF Tools",
   },
   icons: {
     icon: [{ url: "/icons/icon.svg", type: "image/svg+xml" }],
@@ -30,11 +31,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <body>
-        <ToastProvider>{children}</ToastProvider>
+        <I18nProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </I18nProvider>
       </body>
     </html>
   );
 }
-

@@ -5,6 +5,7 @@ import { CSS } from "@dnd-kit/utilities";
 import type { PdfItem } from "@/src/types/pdf";
 import { formatBytes } from "@/src/lib/utils/format";
 import { Button } from "@/src/components/ui/Button";
+import { useI18n } from "@/src/components/i18n/I18nProvider";
 
 function cx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
@@ -21,6 +22,7 @@ export function PdfSortableRow({
   disabled?: boolean;
   onRemove: () => void;
 }) {
+  const { t } = useI18n();
   const {
     attributes,
     listeners,
@@ -53,7 +55,7 @@ export function PdfSortableRow({
           "flex h-9 w-9 items-center justify-center rounded-md border border-white/10 bg-white/5 text-zinc-200",
           disabled ? "cursor-not-allowed opacity-60" : "active:scale-[0.98]"
         )}
-        aria-label="拖拽排序"
+        aria-label={t("merge.dragHandle")}
         {...attributes}
         {...listeners}
       >
@@ -65,12 +67,12 @@ export function PdfSortableRow({
           {index + 1}. {item.fileName}
         </div>
         <div className="mt-0.5 text-xs text-zinc-400">
-          {item.pageCount} 页 · {formatBytes(item.fileSize)}
+          {t("common.pages", { count: item.pageCount })} · {formatBytes(item.fileSize)}
         </div>
       </div>
 
       <Button type="button" variant="ghost" disabled={disabled} onClick={onRemove}>
-        删除
+        {t("merge.remove")}
       </Button>
     </div>
   );

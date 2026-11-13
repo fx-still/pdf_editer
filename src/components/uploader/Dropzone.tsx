@@ -2,6 +2,7 @@
 
 import { useCallback, useId, useRef, useState } from "react";
 import { Button } from "@/src/components/ui/Button";
+import { useI18n } from "@/src/components/i18n/I18nProvider";
 
 function cx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
@@ -21,6 +22,7 @@ export function Dropzone({
   const inputId = useId();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [dragging, setDragging] = useState(false);
+  const { t } = useI18n();
 
   const pick = useCallback(() => {
     inputRef.current?.click();
@@ -57,14 +59,14 @@ export function Dropzone({
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <div className="text-sm font-medium">拖拽 PDF 到这里</div>
+          <div className="text-sm font-medium">{t("dropzone.title")}</div>
           <div className="mt-1 text-xs text-zinc-400">
-            或点击按钮选择文件{helperText ? ` · ${helperText}` : ""}
+            {t("dropzone.hint")}{helperText ? ` · ${helperText}` : ""}
           </div>
         </div>
         <div className="flex items-center gap-2">
           <Button type="button" onClick={pick}>
-            选择 PDF
+            {t("dropzone.pick")}
           </Button>
         </div>
       </div>

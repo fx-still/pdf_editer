@@ -16,6 +16,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import type { PdfItem } from "@/src/types/pdf";
+import { useI18n } from "@/src/components/i18n/I18nProvider";
 import { PdfSortableRow } from "./PdfSortableRow";
 
 export function PdfSortableList({
@@ -27,6 +28,7 @@ export function PdfSortableList({
   onChange: (items: PdfItem[]) => void;
   disabled?: boolean;
 }) {
+  const { t } = useI18n();
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: { distance: 6 },
@@ -40,7 +42,7 @@ export function PdfSortableList({
     <div className="grid gap-2">
       {items.length === 0 ? (
         <div className="rounded-lg border border-white/10 bg-zinc-950/40 p-3 text-sm text-zinc-400">
-          还没有文件。先在上面上传多个 PDF 吧。
+          {t("merge.empty")}
         </div>
       ) : null}
 
